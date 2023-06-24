@@ -11,7 +11,6 @@ from prettytable import PrettyTable
 #create a function name asciart which print Asci art of WeThere
 def asciart():
     art = """
-
 __        __  _____ _                   
 \ \      / /_|_   _| |__   ___ _ __ ___ 
  \ \ /\ / / _ \| | | '_ \ / _ \ '__/ _ \\
