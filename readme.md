@@ -2,7 +2,7 @@
 WeThere is a command-line tool that retrieves the current weather forecast for a specified city. It leverages the OpenWeatherMap API to fetch weather data and parses it using Python. This solution demonstrates how GitHub Copilot can assist with API usage, data parsing, and error handling.<br><br>
 ![WeThere](demo.png)
 ###### Figure 1: WeThere in action
-
+###### Demo Video is also uploaded in the repository.
 ## Prerequisites
 Before using the WeThere tool, make sure you have the following:
 

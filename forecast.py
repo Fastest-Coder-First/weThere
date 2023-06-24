@@ -6,6 +6,7 @@ import json
 import dotenv
 import sys
 import os
+import random
 from prettytable import PrettyTable
 
 #create a function name asciart which print Asci art of WeThere
@@ -59,12 +60,14 @@ def getWeather(city, lengthARG):
             #create a variable city which store the city name
             city = data['name']
 
+            deg = "K"
+
             #check for 3rd argument if it is -t then print the weather details in table format
             if lengthARG >= 3:
                 if(lengthARG == 3 and sys.argv[2] not in fixparams):
                     #return the error message
                     return "Please enter the valid argument"
-                if(lengthARG == 4 and sys.argv[2] not in fixparams or sys.argv[3] not in fixparams):
+                if(lengthARG == 4 and (sys.argv[2] not in fixparams or sys.argv[3] not in fixparams)):
                     #return the error message
                     return "Please enter the valid argument"
                 if(sys.argv[2] == "-t" and lengthARG == 3):
@@ -74,7 +77,7 @@ def getWeather(city, lengthARG):
                     table.add_row([city, country, weather, str(temp)+"K", str(humidity)+"%", str(wind)+"m/s"])
                     return table
                 #return temperature in celsius if 3rd argument is -c and in fahrenheit if 3rd argument is -f and in kelvin if 3rd argument is -k
-                if((sys.argv[2] == "-c" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-c")):
+                if(lengthARG == 4 and (sys.argv[2] == "-c" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-c") or sys.argv[2] == "-c"):
                     #use prettytable library to print the weather details in table format
                     table = PrettyTable()
                     table.field_names = ["City", "Country", "Weather", "Temperature", "Humidity", "Wind Speed"]
@@ -82,8 +85,9 @@ def getWeather(city, lengthARG):
                     return table
                 else:
                     temp = temp - 273.15
+                    deg = "°C"
                 
-                if((sys.argv[2] == "-f" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-f")):
+                if((lengthARG == 4 and sys.argv[2] == "-f" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-f") or sys.argv[2] == "-f"):
                     #use prettytable library to print the weather details in table format
                     table = PrettyTable()
                     table.field_names = ["City", "Country", "Weather", "Temperature", "Humidity", "Wind Speed"]
@@ -91,8 +95,9 @@ def getWeather(city, lengthARG):
                     return table
                 else:
                     temp = (temp*9/5)+32
+                    deg = "°F"
                 
-                if((sys.argv[2] == "-k" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-k")):
+                if(lengthARG == 4 and (sys.argv[2] == "-k" and sys.argv[3] == "-t") or (sys.argv[2] == "-t" and sys.argv[3] == "-k") or sys.argv[2] == "-k"):
                     #use prettytable library to print the weather details in table format
                     table = PrettyTable()
                     table.field_names = ["City", "Country", "Weather", "Temperature", "Humidity", "Wind Speed"]
@@ -100,9 +105,11 @@ def getWeather(city, lengthARG):
                     return table
                 else:
                     temp = temp
-
+                    deg = "K"
+            #round off the temperature to 2 decimal places
+            temp = round(temp, 2)
             #create a variable weatherDetails which store the weather details
-            weatherDetails = "The weather in "+city+", "+country+" is "+weather+" with a temperature of "+str(temp)+"K, humidity of "+str(humidity)+"% and wind speed of "+str(wind)+"m/s"
+            weatherDetails = "The weather in "+city+", "+country+" is "+weather+" with a temperature of "+str(temp)+str(deg)+", humidity of "+str(humidity)+"% and wind speed of "+str(wind)+"m/s"
             #return the weather details
             return weatherDetails
 
@@ -152,6 +159,11 @@ def getWeather(city, lengthARG):
         #return the error message
         return "Please enter the valid city name"
 
+#create a function name Whelp which print the help message
+def Whelp():
+    print(" \nUsage: forecast.py CITY [OPTIONS]\n \nOPTIONS:\n \n  -t, --table\t\t\tPrint the weather details in table format\n  -c, --celsius\t\t\tPrint the temperature in celsius\n  -f, --fahrenheit\t\tPrint the temperature in fahrenheit\n  -k, --kelvin\t\t\tPrint the temperature in kelvin\n  -h, --help\t\t\tPrint the help message\n \nEXAMPLES:\n \n  forecast.py London\n  forecast.py London -t\n  forecast.py London -c\n  forecast.py London -t -c\n  forecast.py London -t -f")
+
+#create a function name footer which print the footer message
 def footer():
     print(" ")
     print("Developed by: Rudra Shah")
@@ -166,6 +178,9 @@ def main():
     #Get the city name from the user as argument and check for valid input
     if lengthARG >= 2:
         city = sys.argv[1]
+        if(city=="-h" or city=="--help"):
+            Whelp()
+            exit()
         print(getWeather(city, lengthARG))
     else:
         print("Please enter the city name as argument")
