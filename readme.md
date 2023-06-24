@@ -1,10 +1,10 @@
 # WeThere: The Weather Forecasting Tool
 WeThere is a command-line tool that retrieves the current weather forecast for a specified city. It leverages the OpenWeatherMap API to fetch weather data and parses it using Python. This solution demonstrates how GitHub Copilot can assist with API usage, data parsing, and error handling.<br><br>
-![WeThere](demo.png)
+![WeThere Demo](demo.png)
 ###### Figure 1: WeThere in action
 ###### Demo Video is also uploaded in the repository.
 
-## Github Copilot Usage
+## Github Copilot Usage (GitHub use case)
 In this submission, I used the GitHub Copilot AI-powered code completion tool to assist with writing the code for the Weather Forecasting Tool. GitHub Copilot helped in several ways:
 
 * API Usage: GitHub Copilot provided suggestions and completions for working with the OpenWeatherMap API. It helped with generating the API request URL, handling the API response, and accessing specific weather data fields.
@@ -17,6 +17,8 @@ In this submission, I used the GitHub Copilot AI-powered code completion tool to
 
 By leveraging GitHub Copilot's suggestions and completions, I was able to write the code more efficiently and effectively. It saved time by providing helpful code snippets and reducing the need for manual research. It also ensured that the code followed best practices and handled potential errors appropriately.GitHub Copilot significantly assisted in developing the Weather Forecasting Tool, making the submission more robust and complete.
 
+## Architecture Diagram
+![WeThere Architecture Diagram](Architecturaldiagram.png)
 ## Prerequisites
 Before using the WeThere tool, make sure you have the following:
 
