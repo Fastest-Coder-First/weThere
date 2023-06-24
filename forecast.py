@@ -153,6 +153,7 @@ def getWeather(city, lengthARG):
         return "Please enter the valid city name"
 
 def footer():
+    print(" ")
     print("Developed by: Rudra Shah")
     print("Github: https://github.com/Fastest-Coder-First/weThere")
 
